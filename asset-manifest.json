@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/rowingLog/static/css/main.abe0e041.css",
+    "main.js": "/rowingLog/static/js/main.77ecad28.js",
+    "static/media/city1.mp4": "/rowingLog/static/media/city1.26d5a370a10f1ff38aef.mp4",
+    "static/media/background.png": "/rowingLog/static/media/background.9642a7c528301489c286.png",
+    "index.html": "/rowingLog/index.html",
+    "main.abe0e041.css.map": "/rowingLog/static/css/main.abe0e041.css.map",
+    "main.77ecad28.js.map": "/rowingLog/static/js/main.77ecad28.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.abe0e041.css",
+    "static/js/main.77ecad28.js"
+  ]
+}
