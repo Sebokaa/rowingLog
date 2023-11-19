@@ -1,0 +1,51 @@
+.rowingLog-container {
+    background-image: url(../Assets/background.png);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+
+.rowingLog-container h1{
+    color: salmon;
+    font-family: "Amatic SC", sans-serif;
+    font-size: 200px;
+}
+
+.rowingLog-container button{
+    width: 250px;
+    padding: 20px;
+    box-shadow: 0px 7px 7px rgb(0,0,0, 0.5); 
+    opacity: 0.4;
+    transition: 0.4s;
+}
+
+.rowingLog-container button img{
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.rowingLog-container svg{
+    font-size: 30px;
+    margin-right: 15px;
+}
+
+.rowingLog-container h5{
+    font-size: 30px;
+}
+
+.rowingLog-container button:hover{
+    opacity: 1;
+}
+
+@media screen and (max-width: 650px){
+    .rowingLog-container h1{
+        color: salmon;
+        font-family: "Amatic SC", sans-serif;
+        font-size: 100px;
+    }
+}

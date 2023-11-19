@@ -1,8 +1,15 @@
 import React from "react";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../firebase";
 import "./signInPage.css";
 import city from "../Assets/city1.mp4";
 
 function signInPage() {
+  const handleGoogle = async (e) => {
+    const provider = await new GoogleAuthProvider();
+    return signInWithPopup (auth, provider)
+  }
+
   return (
     <div className="container">
       <div className="page">
@@ -33,7 +40,7 @@ function signInPage() {
             <h5>Or</h5>
           </div>
           <div className="signInWithGoogle">
-            <button className="google">
+            <button onClick = {handleGoogle} className="google">
               <svg
                 stroke="currentColor"
                 fill="currentColor"
