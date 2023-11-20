@@ -1,13 +1,25 @@
-import React from "react";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import React, { useState } from "react";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase";
-import "./signInPage.css";
+import "./SignInPage.css";
 import city from "../Assets/city1.mp4";
 
-function signInPage() {
+function SignInPage() {
   const handleGoogle = async (e) => {
     const provider = await new GoogleAuthProvider();
     return signInWithPopup (auth, provider)
+  }
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("")
+
+  const handleLogin = async (e) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (e) {
+      document.querySelector(".title").innerHTML = "<h1>Error, Try again!</h1>";
+      console.log(e);
+    }
   }
 
   return (
@@ -27,16 +39,14 @@ function signInPage() {
           <div className="title">
             <h1>Rowing Log</h1>
           </div>
-          <form action="">
-            <input type="text" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             <div className="submitBut">
-              <button onClick="submit" className="login-button">
+              <button onClick={handleLogin} className="login-button">
                 <h6>Login</h6>
               </button>
             </div>
-          </form>
-          <div className="separator">
+            <div className="separator">
             <h5>Or</h5>
           </div>
           <div className="signInWithGoogle">
@@ -85,4 +95,4 @@ function signInPage() {
   );
 }
 
-export default signInPage;
+export default SignInPage;
