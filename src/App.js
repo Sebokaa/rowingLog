@@ -4,6 +4,7 @@ import { auth } from "./firebase";
 import SignInPage from "./Components/SignInPage.jsx";
 import RowingLog from "./Components/RowingLog.jsx";
 
+
 function App() {
   const [user] = useAuthState(auth);
 
