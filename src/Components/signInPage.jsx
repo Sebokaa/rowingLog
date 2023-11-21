@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase";
 import "./SignInPage.css";
 import city from "../Assets/city1.mp4";
@@ -17,8 +17,31 @@ function SignInPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (e) {
-      document.querySelector(".title").innerHTML = "<h1>Error, Try again!</h1>";
+      document.querySelector(".title").innerHTML = "<h1 className='error'>Invalid Credentials</h1>";
       console.log(e);
+    }
+  }
+
+  const handleSignUp = async (e) => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (e) {
+      const emailInput = document.querySelector(".emailInput");
+      const passInput = document.querySelector(".passInput");
+      if(emailInput.value === '' || passInput.value === ''){
+        document.querySelector(".title").innerHTML = "<h1>Missing Info</h1>";
+      } else if(passInput.value.length < 6){
+        document.querySelector(".title").innerHTML = "<h1>Longer Password</h1>";
+      } else if(passInput.value.search(/[A-Z]/) === -1){
+        document.querySelector(".title").innerHTML = "<h1>Include At Least 1 Capital</h1>";
+      } else {
+        document.querySelector(".title").innerHTML = "<h1>User Already Exists</h1>";
+      }
+      if(emailInput.value.includes('@gmail.com') || emailInput.value.includes('@outlook.com') || emailInput.value.includes('@yahoo.com') || emailInput.value.includes('@microsoft.com') || emailInput.value.includes('@smcm.edu') || emailInput.value.includes('@icloud.com')){
+        console.log("ኢሜይሉ ይሰራል")
+      } else{
+        document.querySelector(".title").innerHTML = "<h1>Invalid Email</h1>";
+      }
     }
   }
 
@@ -39,9 +62,12 @@ function SignInPage() {
           <div className="title">
             <h1>Rowing Log</h1>
           </div>
-            <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+            <input className="emailInput" type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            <input className="passInput" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             <div className="submitBut">
+            <button onClick={handleSignUp} className="login-button">
+                <h6>Sign up</h6>
+              </button>
               <button onClick={handleLogin} className="login-button">
                 <h6>Login</h6>
               </button>
